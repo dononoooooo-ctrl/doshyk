@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doshyk — TikTok Publishing</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 700px;
+      margin: 80px auto;
+      padding: 0 20px;
+      background: #f7f7f7;
+      color: #111;
+    }
+
+    .card {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,.08);
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    button {
+      background: #111;
+      color: white;
+      border: 0;
+      border-radius: 8px;
+      padding: 15px 24px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: .85;
+    }
+
+    #status {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    .links {
+      margin-top: 30px;
+      font-size: 14px;
+    }
+
+    .links a {
+      margin-right: 15px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1>Doshyk</h1>
+
+    <p>
+      Web-based content management tool for publishing
+      video content to TikTok.
+    </p>
+
+    <h2>TikTok Publishing</h2>
+
+    <p>
+      Publish the selected test video to the authorized TikTok account.
+    </p>
+
+    <button id="publishButton">
+      Publish to TikTok
+    </button>
+
+    <div id="status"></div>
+
+    <div class="links">
+      <a href="terms.html">Terms of Service</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </div>
+  </div>
+
+  <script>
+    const button = document.getElementById("publishButton");
+    const status = document.getElementById("status");
+
+    button.addEventListener("click", async () => {
+      button.disabled = true;
+      status.textContent = "Sending video to TikTok...";
+
+      try {
+        await fetch(
+          "https://donolasik.app.n8n.cloud/webhook/cd62e671-2f07-45f0-9168-e20e189797b9",
+          {
+            method: "GET",
+            mode: "no-cors"
+          }
+        );
+
+        status.textContent =
+          "Publishing request sent to TikTok successfully.";
+      } catch (error) {
+        status.textContent =
+          "Unable to start publishing workflow.";
+      }
+
+      button.disabled = false;
+    });
+  </script>
+
+</body>
+</html>
